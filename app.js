@@ -9,13 +9,20 @@ const form = document.querySelector('.form-github');
 const inpRecherch = document.querySelector('.inp-recherche');
 
 async function dataGihub(utilisateur) {
-
     const reponse = await fetch(`${APICALL}${utilisateur}`);
-    const data = await reponse.json();
-
-
-  creationCarte(data);
+    if (reponse.status === 404) {
+        const notFoundMessage = `
+        <div class="carte">
+        <p>User not found.</p>
+        </div>
+        `;
+        affichage.innerHTML = notFoundMessage;
+    } else {
+        const data = await reponse.json();
+        creationCarte(data);
+    }
 }
+
 
 function creationCarte(user){
 
