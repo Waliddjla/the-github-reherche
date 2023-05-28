@@ -13,12 +13,9 @@ async function dataGihub(utilisateur) {
     const reponse = await fetch(`${APICALL}${utilisateur}`);
     const data = await reponse.json();
 
-  console.log(data);
 
   creationCarte(data);
 }
-
-dataGihub("Waliddjla")
 
 function creationCarte(user){
 
@@ -34,5 +31,16 @@ function creationCarte(user){
     <li class="repos">repos : ${user.public_repos}</li>
     </ul>
     `;
+    
     affichage.innerHTML = carteHTML;
+   
 }
+
+form.addEventListener('submit', (e)=> {
+    e.preventDefault();
+    if (inpRecherch.value.length > 0) {
+        dataGihub(inpRecherch.value);
+        inpRecherch.value = "";
+
+    }
+})
