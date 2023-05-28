@@ -13,7 +13,7 @@ async function dataGihub(utilisateur) {
     if (reponse.status === 404) {
         const notFoundMessage = `
         <div class="carte">
-        <p>User not found.</p>
+        <p>User not found. try again !</p>
         </div>
         `;
         affichage.innerHTML = notFoundMessage;
